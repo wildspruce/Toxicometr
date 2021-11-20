@@ -1,5 +1,6 @@
-package com.junction.toxicometr.service
+package com.junction.toxicometr.controller
 
+import EmojiGenerator
 import com.junction.toxicometr.model.OutgoingMessage
 import com.junction.toxicometr.model.IncomingMessage
 import org.springframework.messaging.handler.annotation.MessageMapping
@@ -16,7 +17,11 @@ class ChatController {
     @SendTo("/topic/outcome")
     @Throws(Exception::class)
     fun greeting(message: IncomingMessage): OutgoingMessage? {
-        return OutgoingMessage(HtmlUtils.htmlEscape(message.text!!), returnListOfReplacements(message.text!!), null)
+        return OutgoingMessage(
+            HtmlUtils.htmlEscape(message.text!!),
+            EmojiGenerator().returnListOfReplacements(message.text!!),
+            null
+        )
     }
 
 }
