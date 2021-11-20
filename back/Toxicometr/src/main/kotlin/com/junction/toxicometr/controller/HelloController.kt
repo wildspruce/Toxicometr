@@ -1,4 +1,4 @@
-package com.junction.toxicometr.service
+package com.junction.toxicometr.controller
 
 import org.springframework.web.bind.annotation.CrossOrigin
 import org.springframework.web.bind.annotation.GetMapping
