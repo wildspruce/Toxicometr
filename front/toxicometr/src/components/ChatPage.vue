@@ -37,6 +37,7 @@
         v-model="message"
         v-on:keyup.enter="send(message)"
     />
+    <v-btn v-on:click="send()">Send</v-btn>
   </v-card>
 </template>
 

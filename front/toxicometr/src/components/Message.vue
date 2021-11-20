@@ -1,8 +1,8 @@
 <template>
   <v-col md-4 sm-6 xs-12 lg-4 xl-4>
-    <v-card class="elevation-5 px-4">
+    <v-card class="elevation-5 px-4" style="background-color: #1a222c">
       <v-card-title class="form-label justify-center">
-        <div v-html="getSource()"/>
+        <div style="color: white" v-html="getSource()"/>
       </v-card-title>
     </v-card>
   </v-col>
@@ -24,7 +24,8 @@ export default {
   },
   data() {
     return {
-      gen: '<b>'+ this.source.text + '</b><component-x></component-x>'
+      gen: '<b>'+ this.source.text + '<img style="width: 50px; position: relative; top: 10px" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/144/apple/285/grinning-face-with-smiling-eyes_1f604.png" alt=";)">'+
+          '</b><component-x></component-x>'
     }
   },
   mounted() {
@@ -33,7 +34,10 @@ export default {
     getSource() {
       console.log("Message - " + this.source.text)
       return this.gen
-    }
+    },
+    // prepareMessage(start, end, image) {
+    //
+    // }
   },
 }
 </script>
@@ -44,23 +48,5 @@ export default {
   font-size: 32px;
   white-space: nowrap;
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
-}
-.container{
-  position: relative;
-  width: 400px;
-  height: 50px;
-
-}
-.box{
-  width: 100%;
-  height: 100%;
-  display: inline-block;
-  position: absolute;
-  outline: 2px solid;
-  top: 0;
-  left: 0;
-}
-#stack-top{
-  background-color: #E85656;
 }
 </style>
