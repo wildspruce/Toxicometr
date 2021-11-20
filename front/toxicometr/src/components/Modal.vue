@@ -8,11 +8,12 @@
         <div class="modal-body"  style="background: linear-gradient(#181728, #360a2b); ">
           <v-card-title class="justify-center form-label" >Name yourself!</v-card-title>
           <v-text-field
+              dark
               full-width
               class="name ml-10 mr-10"
               ref="name"
               v-model="name"
-              style="color: #f3f3f3; font-size: Large;"
+              style="color: #f3f3f3; font-size: medium"
               :rules="[n => !!n || 'Name can not be empty!']"
               dense
               filled
@@ -36,7 +37,7 @@ export default {
   },
   methods: {
     close() {
-      //if (this.$refs.name.validate)
+      if (!this.$refs['name'].hasError)
       this.$emit('changeUsername', this.name);
     },
   },
@@ -49,7 +50,7 @@ export default {
   display: inline-block;
   text-align: center;
   height: 50px;
-  border: 7px solid white ;
+  border: 2px solid white ;
   background-color: #0d1426;
   border-radius: 7px
 }

@@ -35,7 +35,7 @@
         :caseSensitive="caseEnabled"
 
         v-model="message"
-        v-on:keyup.enter="send(message)"
+        v-on:keyup.enter="send()"
     />
     <v-btn v-on:click="send()">Send</v-btn>
   </v-card>
@@ -77,7 +77,7 @@ export default {
       name: null,
       mc: MessageComponent,
       received_messages: [],
-      message: null,
+      message: "",
       send_message: null,
       connected: false,
       isModalVisible: false,
