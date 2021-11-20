@@ -22,9 +22,13 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 
+/.idea/
+
+/back/Toxicometr/.gradle/
 /back/Toxicometr/.idea/
 /back/Toxicometr/build/
 /back/Toxicometr/out/
+/back/Toxicometr/src/main/resources/config/apikey.json
 
 /front/toxicometr/.idea
 /front/toxicometr/node_modules
