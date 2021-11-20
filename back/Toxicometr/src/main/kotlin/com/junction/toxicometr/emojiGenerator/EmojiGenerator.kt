@@ -6,37 +6,47 @@ import javax.imageio.ImageIO
 
 class EmojiGenerator {
 
-    val mapSwearWordsAndEmoji: HashMap<SwearWordsGroup, String>
+    private val mapSwearWordsAndEmoji: HashMap<SwearWordsGroup, Emoji>
 
     init {
         mapSwearWordsAndEmoji = setEmojisToWords()
     }
 
-    fun getSize(): Int {
-        return mapSwearWordsAndEmoji.size
-    }
-
-    private fun setEmojisToWords(): HashMap<SwearWordsGroup, String> {
-        val mapSwearWordsAndEmoji = HashMap<SwearWordsGroup, String>()
+    private fun setEmojisToWords(): HashMap<SwearWordsGroup, Emoji> {
+        val mapSwearWordsAndEmoji = HashMap<SwearWordsGroup, Emoji>()
         val path = System.getProperty("user.dir") + "/src/main/resources/emoji-constructor/"
-        mapSwearWordsAndEmoji[SwearWordsGroup("2g1c-related")] = path + "MoreShape/25.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("ass-related")] = path + "MoreShape/22.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("balls-related")] = path + "MoreShape/32.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("bdsm-related")] = path + "Shape/24.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("body-related")] = path + "Shape/25.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("bitch-related")] = path + "Shape/8.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("cunt-related")] = path + "MoreShape/48.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("dick-related")] = path + "MoreShape/29.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("fuck-related")] = path + "MoreShape/46.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("gay-related")] = path +"Shape/17.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("general")] = path + "Shape/66.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("racism-related")] = path + "MoreShape/43.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("random")] = path + "MoreShape/67.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("sex-related")] = path +"MoreShape/42.png"
-//        mapSwearWordsAndEmoji[SwearWordsGroup("others-not-listed")] = path +"Shape/11.png"
+        mapSwearWordsAndEmoji[SwearWordsGroup("2g1c-related")] = Emoji(path + "MoreShape/25.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("ass-related")] = Emoji(path + "MoreShape/35.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("balls-related")] = Emoji(path + "MoreShape/32.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("bdsm-related")] = Emoji(path + "Shape/24.png").apply { setAdditional1("${path}2-Misc/25.png") }
+        mapSwearWordsAndEmoji[SwearWordsGroup("body-related")] = Emoji(path + "Shape/25.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("bitch-related")] = Emoji(path + "Shape/8.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("cunt-related")] = Emoji(path + "MoreShape/36.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("dick-related")] = Emoji(path + "MoreShape/29.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("fuck-related")] = Emoji(path + "MoreShape/38.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("gay-related")] = Emoji(path +"Shape/17.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("general")] = Emoji(path + "MoreShape/44.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("racism-related")] = Emoji(path + "MoreShape/43.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("random")] = Emoji(path + "MoreShape/18.png")
+        mapSwearWordsAndEmoji[SwearWordsGroup("sex-related")] = Emoji(path +"MoreShape/42.png")
         return mapSwearWordsAndEmoji
     }
 
+
+    fun generateElements(foldersWithIds: HashMap<Int, String>){
+        mapSwearWordsAndEmoji.forEach{ (wordsGroup, emojiBase) ->
+            println("\nGroup ${wordsGroup.name}")
+
+            var path = System.getProperty("user.dir") + "/src/main/resources/"
+            val shouldBeCentered = (emojiBase.shapeGroup == ShapeGroup.SHAPE_GROUP_2)
+
+            println("shouldBeCentered: $shouldBeCentered")
+
+            val appGenerator = ElementsPainter(this, wordsGroup, shouldBeCentered)
+            var resultUrl = appGenerator.drawBasicElements(emojiBase, path)
+            emojiBase.finalPath = appGenerator.drawAdditionalElements(emojiBase, resultUrl, path, foldersWithIds)
+        }
+    }
 
     fun doFoldersIdMapping(): HashMap<Int, String> {
         val foldersIdMapping = HashMap<Int, String>()
@@ -49,6 +59,15 @@ class EmojiGenerator {
         }
 
         return foldersIdMapping
+    }
+
+    fun generateEmojisBasedOnPhrase(phrase: String){
+        val words = phrase.split(" ")
+        val groups = mutableListOf<SwearWordsGroup>()
+        words.forEach { word -> mapSwearWordsAndEmoji.forEach { if (it.key.listOfWords.contains(word)) groups.add(it.key)} }
+        groups.forEach {
+            println("Generated emoji: ${ mapSwearWordsAndEmoji[it]?.finalPath}")
+        }
     }
 
     fun addElementToImage(bottomImageFilepath: String, topImageFilepath: String, shouldBeCentered: Boolean): String {
