@@ -17,9 +17,10 @@ object ToneAnalyzerChat {
     private const val credentialPath = "/config/apikey.json"
 
     fun analyze(text: String): TextTone {
+        val string = text.lowercase().replace("\u00A0"," ")
         val service = constructAnalyzer()
 
-        val utterance: Utterance = Builder(text).build()
+        val utterance: Utterance = Builder(string).build()
         val toneChatOptions = buildToneChatOptions(utterance)
 
         val analysisResult: UtteranceAnalyses = service.toneChat(toneChatOptions).execute().result
