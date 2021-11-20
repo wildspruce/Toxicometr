@@ -17,9 +17,13 @@ class ChatController {
     @SendTo("/topic/outcome")
     @Throws(Exception::class)
     fun greeting(message: IncomingMessage): OutgoingMessage? {
+        val app = EmojiGenerator()
+        val foldersWithIds = app.doFoldersIdMapping()
+        app.generateElements(foldersWithIds)
+
         return OutgoingMessage(
             HtmlUtils.htmlEscape(message.text!!),
-            EmojiGenerator().returnListOfReplacements(message.text!!),
+            app.returnListOfReplacements(message.text!!),
             null
         )
     }
