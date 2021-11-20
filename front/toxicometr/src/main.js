@@ -18,12 +18,9 @@ Vue.use(VueResource)
 
 Vue.config.productionTip = false
 
-const vuetifyOptions = { }
-
 new Vue({
   el: '#app',
   router,
   vuetify: vuetify_,
   render: h => h(App),
-  vuetify: new Vuetify(vuetifyOptions)
 }).$mount('#app')
