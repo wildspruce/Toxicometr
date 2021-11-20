@@ -18,7 +18,7 @@ class EmojiGenerator {
 
     private fun setEmojisToWords(): HashMap<SwearWordsGroup, String> {
         val mapSwearWordsAndEmoji = HashMap<SwearWordsGroup, String>()
-        val path = System.getProperty("user.dir") + "/back/Toxicometr/src/main/resources/emoji-constructor/"
+        val path = System.getProperty("user.dir") + "/src/main/resources/emoji-constructor/"
         mapSwearWordsAndEmoji[SwearWordsGroup("2g1c-related")] = path + "MoreShape/25.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("ass-related")] = path + "MoreShape/22.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("balls-related")] = path + "MoreShape/32.png"
@@ -28,19 +28,19 @@ class EmojiGenerator {
         mapSwearWordsAndEmoji[SwearWordsGroup("cunt-related")] = path + "MoreShape/48.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("dick-related")] = path + "MoreShape/29.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("fuck-related")] = path + "MoreShape/46.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("gay-related")] = path +"MoreShape/17.png"
+        mapSwearWordsAndEmoji[SwearWordsGroup("gay-related")] = path +"Shape/17.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("general")] = path + "Shape/66.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("racism-related")] = path + "MoreShape/43.png"
-        mapSwearWordsAndEmoji[SwearWordsGroup("random")] = path + "Shape/67.png"
+        mapSwearWordsAndEmoji[SwearWordsGroup("random")] = path + "MoreShape/67.png"
         mapSwearWordsAndEmoji[SwearWordsGroup("sex-related")] = path +"MoreShape/42.png"
-        //TODO case for other random words
+//        mapSwearWordsAndEmoji[SwearWordsGroup("others-not-listed")] = path +"Shape/11.png"
         return mapSwearWordsAndEmoji
     }
 
 
     fun doFoldersIdMapping(): HashMap<Int, String> {
         val foldersIdMapping = HashMap<Int, String>()
-        val path = System.getProperty("user.dir") + "/back/Toxicometr/src/main/resources/emoji-constructor/"
+        val path = System.getProperty("user.dir") + "/src/main/resources/emoji-constructor/"
 
         File(path).list().forEachIndexed { idx, it ->
             if (it != "MoreShape" && it != "Shape"){
@@ -51,9 +51,12 @@ class EmojiGenerator {
         return foldersIdMapping
     }
 
-    fun addElementToImage(bottomImageFilepath: String, topImageFilepath: String): String {
+    fun addElementToImage(bottomImageFilepath: String, topImageFilepath: String, shouldBeCentered: Boolean): String {
         try {
-            val path = System.getProperty("user.dir") + "/back/Toxicometr/src/main/resources/emoji-constructor/"
+            var path = System.getProperty("user.dir") + "/src/main/resources/"
+            val f = File(path, "created-emoji/")
+            f.mkdir()
+            path += "created-emoji/"
 
             val imgA: BufferedImage = ImageIO.read(File( bottomImageFilepath))
             val imgB: BufferedImage = ImageIO.read(File( topImageFilepath))
@@ -69,14 +72,20 @@ class EmojiGenerator {
             val ac: AlphaComposite = AlphaComposite.getInstance(compositeRule, alpha)
             g.drawImage(imgA, 0, 0, null)
             g.composite = ac
-            g.drawImage(imgB, 0, 0, null)
+            if (shouldBeCentered){
+                g.drawImage(imgB, 40, 30, null)
+            } else {
+                g.drawImage(imgB, 0, 0, null)
+            }
+
             g.composite = ac
 
-            ImageIO.write(overlay, "PNG", File(path, "${bottomImageFilepath.split("/").last()}-updated.png"))
+            ImageIO.write(overlay, "PNG", File(path,
+                "${bottomImageFilepath.split("/").last().split(".").first()}-updated.png"))
             g.dispose()
-            return path + "${bottomImageFilepath.split("/").last()}-updated.png"
+            return path + "${bottomImageFilepath.split("/").last().split(".").first()}-updated.png"
         } catch (e: IOException) {
-            return ""
+            return bottomImageFilepath
         }
     }
 
