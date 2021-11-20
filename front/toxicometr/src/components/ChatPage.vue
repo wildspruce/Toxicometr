@@ -3,15 +3,17 @@
       color="#131c28"
       class="fill-height mx-12"
       height="100%"
+
   >
     <Modal v-show="isModalVisible"
+
            @changeUsername="changeUsername($event)"
     />
-    <v-card-title style="color: white;" class="justify-center">Welcome to the chat!</v-card-title>
+    <v-card-title style="color: white; font-size: 1.8rem;" class="justify-center">Welcome to the chat!</v-card-title>
 
     <virtual-list
         class="list"
-        style="height: 360px; overflow-y: auto;"
+        style="height: 360px;  background: linear-gradient(#500e3d, #1b1b1f); overflow-y: auto;"
         :data-key="'uid'"
         :data-sources="received_messages"
         :data-component="mc"
@@ -22,7 +24,7 @@
     <highlightable-input
         align="left"
         label="Write something"
-        style="color: white; width: auto; border: 2mm ridge rgba(170, 50, 220, .6); font-size: 22px"
+        style="color: white;  width: auto; border: 2mm ridge rgba(170, 50, 220, .6); font-size: 22px"
         class="mx-16"
         placeholder="Write something"
         append-icon="send"
@@ -144,5 +146,6 @@ export default {
 </script>
 
 <style scoped>
+/*div {background: linear-gradient(#1d1d24, #f84fce);}*/
 
 </style>

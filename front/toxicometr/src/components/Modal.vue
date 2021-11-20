@@ -1,17 +1,18 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop">
+    <div class="modal-backdrop " >
       <div class="modal">
         <div class="modal-header">
         </div>
-        <div style="height: 180px"></div>
-        <div class="modal-body">
-          <v-card-title class="justify-center form-label">Name yourself!</v-card-title>
+        <div style="height: 180px; background: linear-gradient(#1d081d, #191727); "></div>
+        <div class="modal-body"  style="background: linear-gradient(#181728, #360a2b); ">
+          <v-card-title class="justify-center form-label" >Name yourself!</v-card-title>
           <v-text-field
               full-width
               class="name ml-10 mr-10"
               ref="name"
               v-model="name"
+              style="color: #f3f3f3; font-size: Large;"
               :rules="[n => !!n || 'Name can not be empty!']"
               dense
               filled
@@ -49,11 +50,11 @@ export default {
   text-align: center;
   height: 50px;
   border: 7px solid white ;
-  background-color: #AA0707;
+  background-color: #0d1426;
   border-radius: 7px
 }
 .ok-button:hover{
-  background-color: #9a0707;
+  background-color: #080d1d;
 }
 
 h1{
@@ -86,6 +87,7 @@ h1{
   display: inline-block;
 }
 
+
 .modal-header,
 .modal-footer {
   padding: 15px;
@@ -98,7 +100,17 @@ h1{
   justify-content: space-between;
 }
 
-
+.v-card-title {
+  FONT-VARIANT: JIS78;
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: .0125em;
+  line-height: 2rem;
+  word-break: break-all;
+}
 .modal-body {
   text-align: center;
   position: relative;
@@ -114,7 +126,7 @@ h1{
   padding: 10px;
   cursor: pointer;
   font-weight: bold;
-  color: red;
+  color: '360A2BFF';
   background: transparent;
 }
 
