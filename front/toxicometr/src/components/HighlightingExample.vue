@@ -34,7 +34,7 @@ export default {
   },
   data() {
     const wordList = badWords.split('\n')
-    console.log(wordList)
+
     return {
       msg: '',
       defaultStyle: {'background-color': '#ff073a', 'color': 'white'},
