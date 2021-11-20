@@ -15,10 +15,9 @@
     "sockjs-client": "^1.5.2",
     "vue": "^2.6.11",
     "vue-virtual-scroll-list": "^2.3.3",
-    "webstomp-client": "^1.2.6"
+    "webstomp-client": "^1.2.6",
     "lodash": "^4.17.21",
     "node-interval-tree": "^1.3.3",
-    "vue": "^2.6.11",
     "vue-highlight-words": "^2.0.0",
     "vue-text-highlight": "^2.0.10",
     "vue-word-highlighter": "^1.0.4"

@@ -12,6 +12,7 @@ let router = new Router({
             name: 'Chat',
             component: ChatPage
         },
+        {
             path: '/hw',
             name: 'HighlightingExample',
             component: HighlightingExample
