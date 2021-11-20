@@ -1,15 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import ChatPage from "./components/ChatPage";
 
 Vue.use(Router)
 
 let router = new Router({
     routes: [
         {
-            path: '/hw',
-            name: 'HelloWorld',
-            component: HelloWorld
+            path: '/chat',
+            name: 'Chat',
+            component: ChatPage
         },
     ]
 })
