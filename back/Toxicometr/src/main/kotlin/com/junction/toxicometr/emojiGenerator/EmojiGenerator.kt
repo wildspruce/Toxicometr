@@ -1,7 +1,10 @@
+import com.junction.toxicometr.emojiGenerator.Replacement
 import java.awt.AlphaComposite
 import java.awt.image.BufferedImage
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
+import java.net.URI
 import javax.imageio.ImageIO
 
 class EmojiGenerator {
@@ -106,6 +109,24 @@ class EmojiGenerator {
         } catch (e: IOException) {
             return bottomImageFilepath
         }
+    }
+
+    fun returnListOfReplacements(text: String): List<Replacement> {
+        val words = text.split(" ")
+        val listOfReplacements = mutableListOf<Replacement>()
+        words.forEach { word ->
+            val emoji =  mapSwearWordsAndEmoji.mapNotNull { if (it.key.listOfWords.contains(word)) it.value.finalPath else null }
+            if (emoji.isNotEmpty()){
+                val bImage = ImageIO.read(File(URI("file:" + emoji.first())))
+                val bos = ByteArrayOutputStream()
+                ImageIO.write(bImage, "png", bos)
+                val imgData = bos.toByteArray()
+
+                println("Replacement start: ${text.indexOf(word)}, end: ${text.indexOf(word) + word.length - 1}")
+                listOfReplacements.add(Replacement(text.indexOf(word), text.indexOf(word) + word.length - 1, imgData))
+            }
+        }
+        return listOfReplacements
     }
 
 }
