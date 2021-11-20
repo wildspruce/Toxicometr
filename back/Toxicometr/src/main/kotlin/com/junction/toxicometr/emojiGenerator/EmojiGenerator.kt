@@ -47,6 +47,7 @@ class EmojiGenerator {
 
             val appGenerator = ElementsPainter(this, wordsGroup, shouldBeCentered)
             var resultUrl = appGenerator.drawBasicElements(emojiBase, path)
+            emojiBase.finalPath = resultUrl
             emojiBase.finalPath = appGenerator.drawAdditionalElements(emojiBase, resultUrl, path, foldersWithIds)
         }
     }
