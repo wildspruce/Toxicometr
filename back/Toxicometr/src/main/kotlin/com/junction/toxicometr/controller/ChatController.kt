@@ -16,7 +16,7 @@ class ChatController {
     @SendTo("/topic/outcome")
     @Throws(Exception::class)
     fun greeting(message: IncomingMessage): OutgoingMessage? {
-        return OutgoingMessage(HtmlUtils.htmlEscape(message.text!!))
+        return OutgoingMessage(HtmlUtils.htmlEscape(message.text!!), null, null)
     }
 
 }
