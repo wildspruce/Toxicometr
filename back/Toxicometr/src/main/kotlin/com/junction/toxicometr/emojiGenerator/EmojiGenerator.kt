@@ -37,7 +37,7 @@ class EmojiGenerator {
         mapSwearWordsAndEmoji.forEach{ (wordsGroup, emojiBase) ->
             println("\nGroup ${wordsGroup.name}")
 
-            var path = System.getProperty("user.dir") + "/src/main/resources/"
+            var path = System.getProperty("user.dir") + "/back/Toxicometr/src/main/resources/"
             val shouldBeCentered = (emojiBase.shapeGroup == ShapeGroup.SHAPE_GROUP_2)
 
             println("shouldBeCentered: $shouldBeCentered")
@@ -50,7 +50,7 @@ class EmojiGenerator {
 
     fun doFoldersIdMapping(): HashMap<Int, String> {
         val foldersIdMapping = HashMap<Int, String>()
-        val path = System.getProperty("user.dir") + "/src/main/resources/emoji-constructor/"
+        val path = System.getProperty("user.dir") + "/back/Toxicometr/src/main/resources/emoji-constructor/"
 
         File(path).list().forEachIndexed { idx, it ->
             if (it != "MoreShape" && it != "Shape"){
@@ -72,7 +72,7 @@ class EmojiGenerator {
 
     fun addElementToImage(bottomImageFilepath: String, topImageFilepath: String, shouldBeCentered: Boolean): String {
         try {
-            var path = System.getProperty("user.dir") + "/src/main/resources/"
+            var path = System.getProperty("user.dir") + "/back/Toxicometr/src/main/resources/"
             val f = File(path, "created-emoji/")
             f.mkdir()
             path += "created-emoji/"
