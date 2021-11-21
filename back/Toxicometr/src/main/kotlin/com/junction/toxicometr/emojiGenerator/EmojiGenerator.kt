@@ -129,7 +129,7 @@ class EmojiGenerator {
                 val imgData = bos.toByteArray()
 
                 newWords.add("<img style=\"width: 50px; position: relative; top: 10px\" src=\"data:image/jpeg;base64," +
-                        "${Base64.getEncoder().encode(imgData)}\" alt=\"$word\">")
+                        "${Base64.getEncoder().encodeToString(imgData)}\" alt=\"$word\">")
                 println("Replacement start: ${string.indexOf(word)}, end: ${string.indexOf(word) + word.length - 1}")
             } else {
                 newWords.add(word)
