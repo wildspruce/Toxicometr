@@ -5,7 +5,9 @@ import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.net.URI
+import java.util.*
 import javax.imageio.ImageIO
+import kotlin.collections.HashMap
 
 class EmojiGenerator {
 
@@ -126,7 +128,8 @@ class EmojiGenerator {
                 ImageIO.write(bImage, "png", bos)
                 val imgData = bos.toByteArray()
 
-                newWords.add("<img style=\"width: 50px; position: relative; top: 10px\" src=\"data:image/jpeg;base64,${String(imgData)}\" alt=\"$word\">")
+                newWords.add("<img style=\"width: 50px; position: relative; top: 10px\" src=\"data:image/jpeg;base64," +
+                        "${Base64.getEncoder().encode(imgData)}\" alt=\"$word\">")
                 println("Replacement start: ${string.indexOf(word)}, end: ${string.indexOf(word) + word.length - 1}")
             } else {
                 newWords.add(word)
