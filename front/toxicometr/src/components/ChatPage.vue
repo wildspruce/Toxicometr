@@ -24,7 +24,7 @@
     <highlightable-input
         align="left"
         label="Write something"
-        style="color: white;  width: auto; border: 2mm ridge rgba(170, 50, 220, .6); font-size: 22px"
+        style="color: white;  width: auto; background: url('https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/144/apple/285/grinning-face-with-smiling-eyes_1f604.png') no-repeat scroll 1px 1px 1px; padding-left:30px; border: 2mm ridge rgba(170, 50, 220, .6); font-size: 22px"
         class="mx-16"
         placeholder="Write something"
         append-icon="send"
@@ -33,10 +33,10 @@
         :highlight-enabled="highlightEnabled"
         :highlight="highlight"
         :caseSensitive="caseEnabled"
-
         v-model="message"
         v-on:keyup.enter="send()"
     />
+
     <v-btn v-on:click="send()">Send</v-btn>
   </v-card>
 </template>
