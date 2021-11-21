@@ -129,7 +129,7 @@ class EmojiGenerator {
     }
 
     private fun processWord(word: String): String {
-        return word.replace("\\p{P}", "").lowercase()
+        return word.replace(Regex("\\p{P}"), "").lowercase()
     }
 
 }
