@@ -1,4 +1,3 @@
-import com.junction.toxicometr.emojiGenerator.Replacement
 import java.awt.AlphaComposite
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
@@ -7,7 +6,6 @@ import java.io.IOException
 import java.net.URI
 import java.util.*
 import javax.imageio.ImageIO
-import kotlin.collections.HashMap
 
 class EmojiGenerator {
 
@@ -67,14 +65,6 @@ class EmojiGenerator {
         return foldersIdMapping
     }
 
-    fun generateEmojisBasedOnPhrase(phrase: String){
-        val words = phrase.split(" ")
-        val groups = mutableListOf<SwearWordsGroup>()
-        words.forEach { word -> mapSwearWordsAndEmoji.forEach { if (it.key.listOfWords.contains(word)) groups.add(it.key)} }
-        groups.forEach {
-            println("Generated emoji: ${ mapSwearWordsAndEmoji[it]?.finalPath}")
-        }
-    }
 
     fun addElementToImage(bottomImageFilepath: String, topImageFilepath: String, shouldBeCentered: Boolean): String {
         try {
@@ -116,12 +106,13 @@ class EmojiGenerator {
 
     fun returnListOfReplacements(text: String): String {
 
-        val string = text.lowercase().replace("\u00A0"," ")
+        val string = text.replace("\u00A0"," ")
         val words = string.split(" ")
 
         val newWords = mutableListOf<String>()
         words.forEach { word ->
-            val emoji =  mapSwearWordsAndEmoji.mapNotNull { if (it.key.listOfWords.contains(word)) it.value.finalPath else null }
+            val processedWord = processWord(word)
+            val emoji =  mapSwearWordsAndEmoji.mapNotNull { if (it.key.listOfWords.contains(processedWord)) it.value.finalPath else null }
             if (emoji.isNotEmpty()){
                 val bImage = ImageIO.read(File(URI("file:" + emoji.first())))
                 val bos = ByteArrayOutputStream()
@@ -130,12 +121,15 @@ class EmojiGenerator {
 
                 newWords.add("<img style=\"width: 50px; position: relative; top: 10px\" src=\"data:image/jpeg;base64," +
                         "${Base64.getEncoder().encodeToString(imgData)}\" alt=\"$word\">")
-                println("Replacement start: ${string.indexOf(word)}, end: ${string.indexOf(word) + word.length - 1}")
             } else {
                 newWords.add(word)
             }
         }
         return java.lang.String.join(" ", newWords)
+    }
+
+    private fun processWord(word: String): String {
+        return word.replace("\\p{P}", "").lowercase()
     }
 
 }
