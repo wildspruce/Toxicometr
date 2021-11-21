@@ -106,7 +106,7 @@ class EmojiGenerator {
 
     fun returnListOfReplacements(text: String): String {
 
-        val string = text.lowercase().replace("\u00A0"," ")
+        val string = text.replace("\u00A0"," ")
         val words = string.split(" ")
 
         val newWords = mutableListOf<String>()
@@ -129,7 +129,7 @@ class EmojiGenerator {
     }
 
     private fun processWord(word: String): String {
-        return word.replace("\\p{P}", "");
+        return word.replace("\\p{P}", "").lowercase()
     }
 
 }
