@@ -7,15 +7,15 @@ class OutgoingMessage {
     var text: String? = null
         private set
 
-    var replacements: List<Replacement>? = null
+    var replacement: String = ""
 
     var tone : TextTone? = null
 
     constructor() {}
 
-    constructor(content: String?, replacements: List<Replacement>?, tone: TextTone?) {
+    constructor(content: String?, replacement: String, tone: TextTone?) {
         this.text = content
-        this.replacements = replacements
+        this.replacement = replacement
         this.tone = tone;
     }
 }

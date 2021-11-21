@@ -112,12 +112,12 @@ class EmojiGenerator {
         }
     }
 
-    fun returnListOfReplacements(text: String): List<Replacement> {
+    fun returnListOfReplacements(text: String): String {
 
         val string = text.lowercase().replace("\u00A0"," ")
         val words = string.split(" ")
 
-        val listOfReplacements = mutableListOf<Replacement>()
+        val newWords = mutableListOf<String>()
         words.forEach { word ->
             val emoji =  mapSwearWordsAndEmoji.mapNotNull { if (it.key.listOfWords.contains(word)) it.value.finalPath else null }
             if (emoji.isNotEmpty()){
@@ -126,11 +126,13 @@ class EmojiGenerator {
                 ImageIO.write(bImage, "png", bos)
                 val imgData = bos.toByteArray()
 
+                newWords.add("<img style=\"width: 50px; position: relative; top: 10px\" src=\"data:image/jpeg;base64,${String(imgData)}\" alt=\"$word\">")
                 println("Replacement start: ${string.indexOf(word)}, end: ${string.indexOf(word) + word.length - 1}")
-                listOfReplacements.add(Replacement(string.indexOf(word), string.indexOf(word) + word.length - 1, imgData))
+            } else {
+                newWords.add(word)
             }
         }
-        return listOfReplacements
+        return java.lang.String.join(" ", newWords)
     }
 
 }
