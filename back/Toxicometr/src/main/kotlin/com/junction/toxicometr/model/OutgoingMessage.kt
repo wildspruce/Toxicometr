@@ -12,6 +12,6 @@ class OutgoingMessage : OutgoingMessageDefault {
     constructor(content: String?, replacement: String, tone: TextTone?) : super(tone) {
         this.text = content
         this.replacement = replacement
-        this.tone = tone;
+        this.tone = tone
     }
 }

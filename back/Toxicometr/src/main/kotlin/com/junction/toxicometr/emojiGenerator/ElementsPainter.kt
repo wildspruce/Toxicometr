@@ -1,6 +1,6 @@
 import kotlin.random.Random
 
-class ElementsPainter(private val app: EmojiGenerator, val wordsGroup: SwearWordsGroup, private val shouldBeCentered: Boolean) {
+class ElementsPainter(private val app: EmojiGenerator, private val wordsGroup: SwearWordsGroup, private val shouldBeCentered: Boolean) {
 
     fun drawAdditionalElements(emojiBase: Emoji, url: String, initialPath: String,
                                foldersWithIds: HashMap<Int, String>): String {

@@ -7,6 +7,6 @@ open class OutgoingMessageDefault {
     var tone : TextTone? = null
 
     constructor(tone: TextTone?) {
-        this.tone = tone;
+        this.tone = tone
     }
 }
