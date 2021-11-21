@@ -1,7 +1,7 @@
 <template>
   <v-row class="pt-3 pb-3 pr-6">
-    <v-spacer></v-spacer>
-    <v-spacer></v-spacer>
+    <v-spacer v-if="!this.source.isleft"></v-spacer>
+    <v-spacer v-if="!this.source.isleft"></v-spacer>
   <v-col md-3 sm-3 xs-3 lg-3 xl-3>
     <v-card class="elevation-5 px-4" style="background-color: #1a222c; border-radius: 25px">
       <v-card-title class="form-label justify-start">
@@ -9,6 +9,8 @@
       </v-card-title>
     </v-card>
   </v-col>
+    <v-spacer v-if="this.source.isleft"></v-spacer>
+    <v-spacer v-if="this.source.isleft"></v-spacer>
   </v-row>
 </template>
 
