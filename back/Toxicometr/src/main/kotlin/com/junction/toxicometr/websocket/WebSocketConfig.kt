@@ -11,11 +11,12 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @EnableWebSocketMessageBroker
 class WebSocketConfig : WebSocketMessageBrokerConfigurer {
     override fun configureMessageBroker(config: MessageBrokerRegistry) {
+        config.enableSimpleBroker("/tone")
         config.enableSimpleBroker("/topic")
         config.setApplicationDestinationPrefixes("/app")
     }
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("/toxicometr").setAllowedOrigins("http://localhost:8082").withSockJS()
+        registry.addEndpoint("/toxicometr").setAllowedOrigins("http://localhost:8080").withSockJS()
     }
 }
