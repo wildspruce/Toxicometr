@@ -123,9 +123,10 @@ export default {
     send() {
       console.log("Send message:" + this.message);
       if (this.stompClient && this.stompClient.connected) {
-        const msg = {text: this.message};
+        const msg = {text: this.message, author: this.name};
         this.stompClient.send("/app/income", JSON.stringify(msg), {});
         this.lastMsg = this.msg
+        this.message = ""
       }
     },
     connect() {

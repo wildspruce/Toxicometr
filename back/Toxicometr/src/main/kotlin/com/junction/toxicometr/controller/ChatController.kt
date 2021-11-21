@@ -25,7 +25,8 @@ class ChatController {
         return OutgoingMessage(
             HtmlUtils.htmlEscape(message.text!!),
             app.returnListOfReplacements(message.text!!),
-            ToneAnalyzerChat.analyze(message.text!!)
+            ToneAnalyzerChat.analyze(message.text!!),
+            message.author!!
         )
     }
 

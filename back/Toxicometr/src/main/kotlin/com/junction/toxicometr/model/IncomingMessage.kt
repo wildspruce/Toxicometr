@@ -1,3 +1,3 @@
 package com.junction.toxicometr.model
 
-class IncomingMessage(var text: String?) { }
+class IncomingMessage(var text: String?, var author: String?) { }

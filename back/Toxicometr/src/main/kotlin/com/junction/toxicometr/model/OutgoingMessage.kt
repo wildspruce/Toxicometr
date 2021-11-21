@@ -8,10 +8,13 @@ class OutgoingMessage : OutgoingMessageDefault {
 
     var replacement: String = ""
 
+    var author: String = ""
 
-    constructor(content: String?, replacement: String, tone: TextTone?) : super(tone) {
+
+    constructor(content: String?, replacement: String, tone: TextTone?, author: String) : super(tone) {
         this.text = content
         this.replacement = replacement
         this.tone = tone
+        this.author = author
     }
 }

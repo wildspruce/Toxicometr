@@ -3,7 +3,8 @@
     <v-spacer v-if="!this.source.isleft"></v-spacer>
     <v-spacer v-if="!this.source.isleft"></v-spacer>
   <v-col md-3 sm-3 xs-3 lg-3 xl-3>
-    <v-card class="elevation-5 px-4" style="background-color: #1a222c; border-radius: 25px">
+    <v-card class="elevation-5 px-1" style="background-color: #1a222c; border-radius: 25px">
+      <h3 class="mr-3 mt-3" style="color: aliceblue; text-align: end">{{this.source.content.author}}</h3>
       <v-card-title class="form-label justify-start">
         <div style="color: white" v-html="getSource()"/>
       </v-card-title>
