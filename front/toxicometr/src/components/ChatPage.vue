@@ -124,7 +124,9 @@ export default {
             this.connected = true;
             console.log(frame);
             this.stompClient.subscribe("/topic/outcome", tick => {
-              this.received_messages.push({uid: tick.headers["message-id"], text: JSON.parse(tick.body).text});
+              console.log(tick.body)
+              console.log("Json Parse " + JSON.parse(tick.body))
+              this.received_messages.push({uid: tick.headers["message-id"], content: JSON.parse(tick.body)});
             });
           },
           error => {

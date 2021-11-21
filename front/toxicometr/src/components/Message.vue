@@ -1,11 +1,15 @@
 <template>
-  <v-col md-4 sm-6 xs-12 lg-4 xl-4>
-    <v-card class="elevation-5 px-4" style="background-color: #1a222c">
-      <v-card-title class="form-label justify-center">
+  <v-row class="pt-3 pb-3 pr-6">
+    <v-spacer></v-spacer>
+    <v-spacer></v-spacer>
+  <v-col md-3 sm-3 xs-3 lg-3 xl-3>
+    <v-card class="elevation-5 px-4" style="background-color: #1a222c; border-radius: 25px">
+      <v-card-title class="form-label justify-start">
         <div style="color: white" v-html="getSource()"/>
       </v-card-title>
     </v-card>
   </v-col>
+  </v-row>
 </template>
 
 <script>
@@ -24,21 +28,18 @@ export default {
   },
   data() {
     return {
-      gen: '<b>'+ this.source.text + '<img style="width: 50px; position: relative; top: 10px" src="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/144/apple/285/grinning-face-with-smiling-eyes_1f604.png" alt=";)">'+
-          '</b><component-x></component-x>'
+      gen: "",
+      startOffset: 0,
+      imageBase: '<img style="width: 50px; position: relative; top: 10px" src="" alt="">'
     }
   },
   mounted() {
   },
   methods: {
     getSource() {
-      console.log("Message - " + this.source.text)
-      return this.gen
-    },
-    // prepareMessage(start, end, image) {
-    //
-    // }
-  },
+      return this.source.content.replacement
+    }
+  }
 }
 </script>
 
