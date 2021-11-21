@@ -16,6 +16,6 @@ class WebSocketConfig : WebSocketMessageBrokerConfigurer {
     }
 
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("/toxicometr").setAllowedOrigins("http://localhost:8082").withSockJS()
+        registry.addEndpoint("/toxicometr").setAllowedOrigins("https://bb1c-188-170-86-53.ngrok.io").withSockJS()
     }
 }
