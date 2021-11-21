@@ -1,12 +1,12 @@
 <template>
   <transition name="modal-fade">
-    <div class="modal-backdrop " >
+    <div class="modal-backdrop ">
       <div class="modal">
         <div class="modal-header">
         </div>
         <div style="height: 180px; background: linear-gradient(#1d081d, #191727); "></div>
-        <div class="modal-body"  style="background: linear-gradient(#181728, #360a2b); ">
-          <v-card-title class="justify-center form-label" >Name yourself!</v-card-title>
+        <div class="modal-body" style="background: linear-gradient(#181728, #360a2b); ">
+          <v-card-title class="justify-center form-label">Name yourself!</v-card-title>
           <v-text-field
               dark
               full-width
@@ -38,32 +38,34 @@ export default {
   methods: {
     close() {
       if (!this.$refs['name'].hasError)
-      this.$emit('changeUsername', this.name);
+        this.$emit('changeUsername', this.name);
     },
   },
 };
 </script>
 
 <style scoped>
-.ok-button{
+.ok-button {
   width: 200px;
   display: inline-block;
   text-align: center;
   height: 50px;
-  border: 2px solid white ;
+  border: 2px solid white;
   background-color: #0d1426;
   border-radius: 7px
 }
-.ok-button:hover{
+
+.ok-button:hover {
   background-color: #080d1d;
 }
 
-h1{
+h1 {
   color: white;
   font-size: 26px;
   font-family: Century Gothic, CenturyGothic, AppleGothic, sans-serif;
   cursor: pointer;
 }
+
 .modal-backdrop {
   position: fixed;
   z-index: 9;
@@ -112,6 +114,7 @@ h1{
   line-height: 2rem;
   word-break: break-all;
 }
+
 .modal-body {
   text-align: center;
   position: relative;
@@ -137,6 +140,7 @@ h1{
   border: 1px solid #4AAE9B;
   border-radius: 2px;
 }
+
 .modal-fade-enter,
 .modal-fade-leave-to {
   opacity: 0;
@@ -146,7 +150,8 @@ h1{
 .modal-fade-leave-active {
   transition: opacity .5s ease;
 }
-.form-label{
+
+.form-label {
   font-style: normal;
   font-weight: normal;
   font-size: 48px;

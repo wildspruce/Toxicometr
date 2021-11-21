@@ -1,7 +1,7 @@
 <template>
   <v-card
       color="#131c28"
-      class="fill-height mx-12"
+      class="fill-height"
       height="100%"
 
   >
@@ -23,30 +23,34 @@
     <v-spacer></v-spacer>
     <v-row align="end" class="mx-10">
       <v-col
-             sm="10"
-             md="11">
-    <highlightable-input
-        align="left"
-        label="Write something"
-        style="color: white;  width: auto; background: 99.5% 50% / 2% 80% no-repeat url('https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/144/apple/285/grinning-face-with-smiling-eyes_1f604.png'); padding-left:30px; border: 2mm ridge rgba(170, 50, 220, .6); font-size: 22px"
-        class="ml-1"
-        placeholder="Write something"
-        append-icon="send"
+          sm="10"
+          md="11"
+          xs="9">
+        <highlightable-input
+            align="left"
+            label="Write something"
+            style="color: white;  width: auto; background: 99.5% 50% / 2% 80% no-repeat url('https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/144/apple/285/grinning-face-with-smiling-eyes_1f604.png'); padding-left:30px; border: 2mm ridge rgba(170, 50, 220, .6); font-size: 22px"
+            class="ml-1"
+            placeholder="Write something"
+            append-icon="send"
 
-        :highlight-style="defaultStyle"
-        :highlight-enabled="highlightEnabled"
-        :highlight="highlight"
-        :caseSensitive="caseEnabled"
-        v-model="message"
-        v-on:keyup.enter="send()"
-    />
+            :highlight-style="defaultStyle"
+            :highlight-enabled="highlightEnabled"
+            :highlight="highlight"
+            :caseSensitive="caseEnabled"
+            v-model="message"
+            v-on:keyup.enter="send()"
+        />
       </v-col>
       <v-col sm="2"
              md="1"
+             xs="3"
              class="text-left"
              justify="start"
-      align-self="center">
-    <v-btn color="#0d1522"  x-large style="elevation: higher; border: 2mm ridge rgba(170, 50, 220, .6);" dark v-on:click="send()">Send</v-btn>
+             align-self="center">
+        <v-btn color="#0d1522" x-large style="elevation: higher; border: 2mm ridge rgba(170, 50, 220, .6);" dark
+               v-on:click="send()">Send
+        </v-btn>
       </v-col>
     </v-row>
   </v-card>
@@ -142,10 +146,14 @@ export default {
               console.log("Json Parse " + JSON.parse(tick.body))
               console.log("Last msg " + this.lastMsg)
               let isleft = true
-              if (this.lastMsg === JSON.parse(tick.body).text){
+              if (this.lastMsg === JSON.parse(tick.body).text) {
                 isleft = false
               }
-              this.received_messages.push({uid: tick.headers["message-id"], content: JSON.parse(tick.body), left: isleft});
+              this.received_messages.push({
+                uid: tick.headers["message-id"],
+                content: JSON.parse(tick.body),
+                left: isleft
+              });
             });
           },
           error => {
