@@ -29,6 +29,7 @@ hs_err_pid*
 /back/Toxicometr/build/
 /back/Toxicometr/out/
 /back/Toxicometr/src/main/resources/config/apikey.json
+/back/Toxicometr/src/main/resources/config/created-emoji/
 
 /front/toxicometr/.idea
 /front/toxicometr/node_modules
