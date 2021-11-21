@@ -10,6 +10,11 @@ let router = new Router({
             path: '/chat',
             name: 'Chat',
             component: ChatPage
+        },
+        {
+            path: '/',
+            name: 'Chat',
+            component: ChatPage
         }
     ]
 })

@@ -6,7 +6,7 @@
         </div>
         <div style="height: 180px; background: linear-gradient(#1d081d, #191727); "></div>
         <div class="modal-body" style="background: linear-gradient(#181728, #360a2b); ">
-          <v-card-title class="justify-center form-label">Name yourself!</v-card-title>
+          <v-card-title class="justify-center form-label">What is your name?</v-card-title>
           <v-text-field
               dark
               full-width
